@@ -1,10 +1,17 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
+// const mongoose = require('mongoose');
+const dotenv = require("dotenv");
+dotenv.config();
+// const {DB_HOST, PORT = 3000} = process.env;
 
 const contactsRouter = require('./routes/api/contacts');
 
 const app = express();
+
+
+
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
@@ -20,8 +27,11 @@ app.use((req, res) => {
 
 app.use((err, req, res, next) => {
   const { status = 500, message = "server error" } = err;
+  console.log(err);
   res.status(status).json({ message: message })
 });
+
+
 
 module.exports = app;
 
