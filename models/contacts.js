@@ -33,8 +33,13 @@ const joiSchema = Joi.object({
   favorite: Joi.boolean()
 });
 
+const joiFavoriteSchema = Joi.object({
+  favorite: Joi.boolean().required()
+});
+
 const schemas = {
-  joiSchema
+  joiSchema,
+  joiFavoriteSchema
 }
 
 const Contact = model("contact", contactSchema);

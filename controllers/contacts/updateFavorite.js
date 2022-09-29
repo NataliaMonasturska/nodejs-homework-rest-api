@@ -1,13 +1,8 @@
 const {Contact} = require("../../models/contacts");
-const mongoose = require('mongoose');
 
 const updateFavorite = async (req, res) => {
     const { contactId } = req.params;
-    if(!mongoose.isValidObjectId(contactId)){
-        const error = new Error(`Product with id=${contactId} not found`);
-        error.status = 404;
-        throw error;
-    }
+
     if (req.body.favorite === undefined) {
         const error = new Error("missing field favorite");
         error.status = 400;
