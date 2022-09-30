@@ -11,8 +11,6 @@ const contactsRouter = require('./routes/api/contacts');
 const app = express();
 
 
-
-
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
 app.use(logger(formatsLogger));
@@ -31,9 +29,4 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message: message })
 });
 
-
-
 module.exports = app;
-
-
-// mongodb+srv://Natalia:prokimen@cluster0.a3ocgxa.mongodb.net/test

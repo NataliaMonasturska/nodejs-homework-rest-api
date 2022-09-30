@@ -1,5 +1,6 @@
 const express = require('express');
-const { validation, ctrlWrapper, isValidId } = require('../../middlewares');
+const { validation, isValidId } = require('../../middlewares');
+const { ctrlWrapper} = require('../../helpers');
 const { schemas} = require('../../models/contacts');
 const { contacts: ctrl } = require('../../controllers');
 
