@@ -1,16 +1,10 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
-// const mongoose = require('mongoose');
 const dotenv = require("dotenv");
 dotenv.config();
-// const {DB_HOST, PORT = 3000} = process.env;
-
 const contactsRouter = require('./routes/api/contacts');
-
 const app = express();
-
-
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
 app.use(logger(formatsLogger));
