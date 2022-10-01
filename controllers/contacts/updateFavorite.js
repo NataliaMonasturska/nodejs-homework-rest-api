@@ -1,9 +1,10 @@
 const { Contact } = require("../../models/contacts");
 
-const removeById = async (req, res) => {
+const updateFavorite = async (req, res) => {
     const { contactId } = req.params;
-    const contact = await Contact.findByIdAndRemove(contactId);
-    if (!contact) {
+    const { favorite } = req.body;
+    const result = await Contact.findByIdAndUpdate(contactId, { favorite }, { new: true });
+    if (!result) {
         const error = new Error(`Product with id=${contactId} not found`);
         error.status = 404;
         throw error;
@@ -11,10 +12,9 @@ const removeById = async (req, res) => {
     res.json({
         status: "success",
         code: 200,
-        message: "contact deleted",
         data: {
-            contact
+            result
         }
     })
 }
-module.exports = removeById;
+module.exports = updateFavorite;
