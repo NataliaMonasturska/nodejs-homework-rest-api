@@ -22,12 +22,17 @@ if(!passCompare){
 const payload = {
     id: user._id
 }
-const token = jwt.sign(payload, SECRET_KEY, {expiresIn: "1h"} );
+const token = jwt.sign(payload, SECRET_KEY, {expiresIn: "3h"});
+await User.findByIdAndUpdate(user._id, {token});
 res.json({
     status: "success",
     code: 200,
     data: {
-        token
+        token,
+        user: {
+            email,
+            subscription: user. subscription
+          }
     }
 })
 }
