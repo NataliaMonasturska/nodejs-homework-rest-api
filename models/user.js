@@ -1,7 +1,8 @@
 const { Schema, model } = require("mongoose");
 const Joi = require('joi');
+const { handleSaveErrors } = require("../helpers");
 
-const userSchema = Schema({
+const userSchema = new Schema({
     password: {
         type: String,
         required: [true, 'Password is required'],
@@ -26,17 +27,25 @@ const userSchema = Schema({
     }
 );
 
+userSchema.post("save", handleSaveErrors);
+
 const joiSchema = Joi.object({
     email: Joi.string().required(),
-    password: Joi.string().required(),
-  
+    password: Joi.string().min(6).required(),
+
+});
+const joiFavoriteSchema = Joi.object({
+    subscription: Joi.string().required().valid("starter", "pro", "business")
 });
 
 
 const User = model("user", userSchema)
-
+const schemas = {
+    joiSchema,
+    joiFavoriteSchema
+}
 module.exports = {
     User,
-    joiSchema,
-  
+    schemas
+
 }
