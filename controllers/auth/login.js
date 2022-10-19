@@ -8,12 +8,15 @@ dotenv.config();
 const { SECRET_KEY } = process.env;
 
 const login = async (req, res) => {
+    
+  
     const { email, password } = req.body;
     const user = await User.findOne({ email })
     if (!user) {
         throw new Unauthorized(`Email ${email} not found`);
     }
     const passCompare = await bcrypt.compare(password, user.password);
+
     if (!passCompare) {
         throw new Unauthorized("Password wrong");
     }
@@ -38,5 +41,32 @@ const login = async (req, res) => {
             }
         }
     })
+   
 }
+
+// const result = async() => {
+    
+// const mReq = {
+//     body: {
+//       email: "natali@ meta.ua",
+//       password: "111111", 
+//     }
+//   }
+//    const mRes = {}
+
+//  const res = await login( mReq, mRes);
+//  console.log(JSON.parse(res));
+// } 
+// result()
+
+// const mReq = {
+//     body: {
+//       email: "natali@ meta.ua",
+//       password: "111111", 
+//     }
+//   }
+// //   const mRes = {}
+
+//  login( mReq, {}).then(({req, res}) => console.log("result"))
+
 module.exports = login;
