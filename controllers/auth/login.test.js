@@ -7,10 +7,10 @@ require("dotenv").config();
 const app = require("../../app");
 const { User } = require("../../models/user");
 const { PORT, DB_TEST_HOST } = process.env;
-//  const app = express();
 app.post("/api/auth/login")
 
 jest.setTimeout(110000);
+
 
 
 describe("test auth routes", () => {

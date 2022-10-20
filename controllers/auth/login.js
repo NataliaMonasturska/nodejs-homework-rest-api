@@ -15,6 +15,9 @@ const login = async (req, res) => {
     if (!user) {
         throw new Unauthorized(`Email ${email} not found`);
     }
+    if(!user.verify){
+        throw new Unauthorized(`Email ${email} not ferify`);
+    }
     const passCompare = await bcrypt.compare(password, user.password);
 
     if (!passCompare) {
