@@ -44,10 +44,13 @@ userSchema.post("save", handleSaveErrors);
 const joiSchema = Joi.object({
     email: Joi.string().required(),
     password: Joi.string().min(6).required(),
-
 });
 const joiFavoriteSchema = Joi.object({
     subscription: Joi.string().required().valid("starter", "pro", "business")
+});
+
+const joiVerifyEmailSchema = Joi.object({
+    email: Joi.string().required(),
 });
 
 
@@ -55,7 +58,8 @@ const joiFavoriteSchema = Joi.object({
 const User = model("user", userSchema)
 const schemas = {
     joiSchema,
-    joiFavoriteSchema
+    joiFavoriteSchema,
+    joiVerifyEmailSchema
 }
 module.exports = {
     User,

@@ -39,25 +39,25 @@ module.exports = app;
 
 
 
-// 6дЗ
+// // 6дЗ
 
-const sgMail = require("@sendgrid/mail");
+// const sgMail = require("@sendgrid/mail");
 
-require("dotenv").config();
+// require("dotenv").config();
 
-const {TOKEN_SEND_GRID} = process.env;
+// const {TOKEN_SEND_GRID} = process.env;
 
-sgMail.setApiKey(TOKEN_SEND_GRID);
+// sgMail.setApiKey(TOKEN_SEND_GRID);
 
-const mail = {
-  to:"tjomamon@meta.ua",
-  from: "natalia.mail@meta.ua",
-  subject: "Привет! Это тестовое письмо.",
-  html: "А это тестовый html"
-}
+// const mail = {
+//   to:"tjomamon@meta.ua",
+//   from: "natalia.mail@meta.ua",
+//   subject: "Привет! Это тестовое письмо.",
+//   html: "А это тестовый html"
+// }
 
-sgMail.send(mail)
-.then(()=> console.log("Mail send success"))
-.catch(error => console.log(error.message))
+// sgMail.send(mail)
+// .then(()=> console.log("Mail send success"))
+// .catch(error => console.log(error.message))
 
 
