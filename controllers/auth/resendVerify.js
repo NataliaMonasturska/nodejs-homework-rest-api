@@ -1,6 +1,5 @@
 const { User } = require("../../models/user");
 const { BadRequest } = require("http-errors");
-
 const { createVerifyEmail, sendEmail } = require("../../helpers")
 
 const resendVerify = async (req, res) => {
@@ -22,7 +21,6 @@ const resendVerify = async (req, res) => {
     res.json({
         message: "Verification email sent"
     })
-
 }
 
 module.exports = resendVerify;

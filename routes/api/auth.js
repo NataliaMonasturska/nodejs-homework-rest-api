@@ -9,9 +9,8 @@ router.post("/register", validation(schemas.joiSchema), ctrlWrapper(ctrl.registe
 
 router.get("/verify/:verificationToken", ctrlWrapper(ctrl.verify))
 
-router.post("/verify",  validation(schemas.joiVerifyEmailSchema),  ctrlWrapper(ctrl.resendVerify))
-// или так по дз
-// router.post("/signup")
+router.post("/verify", validation(schemas.joiVerifyEmailSchema), ctrlWrapper(ctrl.resendVerify))
+
 router.post("/login", validation(schemas.joiSchema), ctrlWrapper(ctrl.login));
 
 router.get("/logout", auth, ctrlWrapper(ctrl.logout))
