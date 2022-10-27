@@ -6,8 +6,11 @@ const { schemas } = require('../../models/user')
 
 const router = express.Router();
 router.post("/register", validation(schemas.joiSchema), ctrlWrapper(ctrl.register));
-// или так по дз
-// router.post("/signup")
+
+router.get("/verify/:verificationToken", ctrlWrapper(ctrl.verify))
+
+router.post("/verify", validation(schemas.joiVerifyEmailSchema), ctrlWrapper(ctrl.resendVerify))
+
 router.post("/login", validation(schemas.joiSchema), ctrlWrapper(ctrl.login));
 
 router.get("/logout", auth, ctrlWrapper(ctrl.logout))

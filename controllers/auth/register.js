@@ -2,7 +2,8 @@ const { Conflict } = require("http-errors");
 const bcrypt = require("bcryptjs");
 const { User } = require("../../models/user");
 const gravatar = require('gravatar');
-
+const { uid } = require("uid");
+const { sendEmail, createVerifyEmail } = require("../../helpers")
 
 const register = async (req, res) => {
     const { email, password } = req.body;
@@ -12,7 +13,11 @@ const register = async (req, res) => {
     }
     const hashPassword = await bcrypt.hash(password, 10);
     const avatarURL = gravatar.url(email);
-    await User.create({ email, password: hashPassword, avatarURL });
+    const verificationToken = uid(32);
+    await User.create({ email, password: hashPassword, avatarURL, verificationToken });
+    const mail = createVerifyEmail(email, verificationToken);
+
+    await sendEmail(mail);
     res.status(201).json({
         status: "success",
         code: 201,
